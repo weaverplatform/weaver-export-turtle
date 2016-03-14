@@ -1,0 +1,32 @@
+{
+  "name": "weaver-export-turtle",
+  "version": "0.0.1",
+  "description": "Plugin to export a dataset to RDF Turtle using predefined relation routes",
+  "author": {
+    "name": "Mohamad Alamili",
+    "url": "http://weaverplatform.com",
+    "email": "mail@weaverplatform.com"
+  },
+  "readme": "README.md",
+  "main": "lib/index.js",
+  "license": "GPL-3.0",
+  "repository": {},
+  "dependencies": {
+    "weaver-sdk": "~0.0.7"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "mocha": "^2.2.5",
+    "chai": "^3.0.0",
+    "sinon": "^1.15.4",
+    "chai-as-promised": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "start": "coffee src/index.coffee",
+    "prepublish": "coffee -o lib -c src",
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --recursive $(find test -path '*test.coffee')"
+  }
+}
