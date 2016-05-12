@@ -41,16 +41,19 @@ module.exports =
 
       @weaver.get(id, {eagerness: -1}).bind(@).then((dataset)->
 
-        for objId, object of dataset.objects.$links()
-          for propId, property of object.properties.$links()
+        if dataset.objects?
+          for objId, object of dataset.objects.$links()
+            console.log(object)
+            if object.properties?
+              for propId, property of object.properties.$links()
 
-            value = null
-            if property.object?
-              value = """<#{property.object.$id()}>"""
-            else
-              value = """"#{property.value}"^^xsd:string"""
+                value = null
+                if property.object?
+                  value = """<#{property.object.$id()}>"""
+                else
+                  value = """"#{property.value}"^^xsd:string"""
 
-            content += """<#{objId}> <#{property.predicate}> #{value} .\n"""
+                content += """<#{objId}> <#{property.predicate}> #{value} .\n"""
 
         # Remove last new line character
         content = content.slice(0, -1)
